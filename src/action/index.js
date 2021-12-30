@@ -1,10 +1,24 @@
-export const increment = () => {
+export const increment = (val) => {
     return {
-        type: "INCREMENT"
+        type: "INCREMENT",
+        payload: val
     }
 };
-export const decrement = () => {
+export const decrement = (val) => {
     return {
-        type: "DECREMENT"
+        type: "DECREMENT",
+        payload: val
+    }
+};
+export const multiply = (val) => {
+    return {
+        type: "MULTIPLY",
+        payload: val
+    }
+};
+export const division = (val) => {
+    return {
+        type: "DIVISION",
+        payload: val
     }
 };
