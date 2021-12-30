@@ -1,0 +1,9 @@
+.counter{
+    text-align: center;
+}
+button{
+    height: 50px;
+    width: 50px;
+    margin: 20px;
+    font-size: 20px;
+}
