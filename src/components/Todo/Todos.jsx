@@ -8,7 +8,7 @@ const Todos = () => {
   return (
     <>
       <Input key={uuidv4()} />
-      {Todos.filter((item) => item.complete !== true).map((item) => (
+      {Todos.map((item) => (
         <>
           <Show check={item.complete} key={item.id} id={item.id} title={item.title} desc={item.description} status={item.status} />
         </>

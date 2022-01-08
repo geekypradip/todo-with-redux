@@ -1,21 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { toggle, delet } from '../../action/index';
+import Edittodo from "./EditTodo";
 import styles from "./show.module.css";
-const Show = ({ title, desc, check, status }) => {
+const Show = ({ id, title, desc, status }) => {
+  const [isEdit, setIsEdit] = useState(false);
+  const dispatch = useDispatch();
+  const handleEditClick = (e) => {
+    setIsEdit(e)
+  }
   return (
-    <div className={styles.show}>
-      <div style={check ? { backgroundColor: "#7c7b7ba1" } : null}>
-        <div>
-          <input onChange={(e) => e.target.checked} type="checkbox" checked={check ? true : false} />
+    <div>
+      <div className={styles.show}>
+        <div >
           <div>
-            <h2 className={check ? styles.line : styles.textt}>{title}</h2>
-            <p>{desc}</p>
+            {/* <input onChange={(e) => e.target.checked} type="checkbox" checked={check ? true : false} /> */}
+            <div>
+              <h2 className={styles.textt}>{title}</h2>
+              <p>{desc}</p>
+            </div>
+          </div>
+          <div>
+            <button onClick={() => dispatch(toggle(id))} className={status ? styles.green : styles.red} >{status ? "T" : "F"}</button>
+            <button onClick={() => dispatch(delet(id))}>X</button>
+            <button onClick={() => setIsEdit(true)}>E</button>
+
           </div>
         </div>
-        <div>
-          <button className={status ? styles.green : styles.red} >{status ? "T" : "F"}</button>
-          <button>X</button>
-        </div>
       </div>
+      {isEdit ? <Edittodo onHandleEdit={handleEditClick} title={title} desc={desc} id={id} /> : null}
     </div>
   );
 };
